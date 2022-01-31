@@ -1,6 +1,7 @@
 import React from "react";
 import "./nav.css";
-import { BsPerson, BsCart3 } from "react-icons/bs";
+import { BsPerson, BsSearch } from "react-icons/bs";
+import { FaOpencart } from "react-icons/fa";
 
 export default function Nav() {
   return (
@@ -15,9 +16,11 @@ export default function Nav() {
         <div>
           <BsPerson></BsPerson>
         </div>
-
         <div>
-          <BsCart3></BsCart3>
+          <BsSearch></BsSearch>
+        </div>
+        <div>
+          <FaOpencart></FaOpencart>
         </div>
       </div>
     </div>
