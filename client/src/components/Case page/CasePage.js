@@ -32,6 +32,22 @@ export default function CasePage() {
           <p>{oCase.priceDes}</p>
         </div>
         <Slider images={oCase.images}></Slider>
+        <div className="casePage_description">
+          <p>{oCase.description}</p>
+          <ul>
+            <li>لا يوجد استبدال واسترجاع</li>
+            <li>
+              ليمنع نشر تفاصيل القضية او الحل علنيًا لتفادي التعرض لمسائلات
+              قانونية
+            </li>
+            <li>
+              للتوصيل داخل السعودية (4-7)يوم عمل خارج السعودية من (7-14)يوم عمل
+            </li>
+            <li>مستوى صعوبة اللعبة ({oCase.difficulty}/10)</li>
+            <li>{oCase.ageRating}+</li>
+            <li>السعر شامل الضريبة</li>
+          </ul>
+        </div>
       </div>
     </div>
   );

@@ -19,3 +19,18 @@
 .casePage_mainTit > p {
   color: #999999;
 }
+.casePage_description {
+  font-family: "Lora", "Scheherazade New";
+  font-weight: 600;
+  font-size: 15px;
+  color: #5a5a5a;
+}
+.casePage_description > p {
+  margin: 10px 0;
+  width: 541px;
+  margin-left: auto;
+}
+.casePage_description > ul {
+  list-style: none;
+  font-weight: 500;
+}
