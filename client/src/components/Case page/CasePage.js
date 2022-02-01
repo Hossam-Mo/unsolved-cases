@@ -14,6 +14,7 @@ export default function CasePage() {
       "https://cdn.salla.sa/lwWeD/66qZ934Cr44jWDdTnwoCwPMR0Y4NIDMuaHpxOkj8.png",
     ],
     price: 25,
+    priceDes: "السعر شامل الضريبه",
     description:
       "قضيه لم تحل منذ اكثر من عشرين سنه تم تلفيق مقتل غاده ماسي على ابو جميل مهمتك كـ محقق حل غموض اللغز وكشف الجاني الحقيقي",
     ageRating: "14",
@@ -23,6 +24,13 @@ export default function CasePage() {
   return (
     <div className="casePage">
       <Refrance root={"قتل في حفل الزفاف"}></Refrance>
+      <div className="casePage_main">
+        <div className="casePage_mainTit">
+          <h1>{oCase.name}</h1>
+          <h3>{oCase.price} JD</h3>
+          <p>{oCase.priceDes}</p>
+        </div>
+      </div>
     </div>
   );
 }

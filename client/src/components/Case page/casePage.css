@@ -1,0 +1,24 @@
+.casePage {
+}
+
+.casePage_main {
+  margin: 0 200px;
+  margin-top: 35px;
+  text-align: right;
+}
+.casePage_mainTit {
+  font-family: "Lora", "Scheherazade New";
+  font-size: 13px;
+}
+.casePage_mainTit > h1 {
+  color: #5a5a5a;
+  margin-bottom: 10px;
+}
+.casePage_mainTit > h3 {
+  color: #212121;
+
+  margin-bottom: 5px;
+}
+.casePage_mainTit > p {
+  color: #999999;
+}
