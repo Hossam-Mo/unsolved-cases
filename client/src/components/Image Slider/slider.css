@@ -3,7 +3,6 @@
   width: 500px;
   min-height: 500px;
   margin: 50px 20px;
-  margin-left: auto;
 }
 
 .slider_img {
@@ -38,6 +37,8 @@
   border: 1px solid lightgray;
   border-radius: 50px;
   z-index: 20;
+  cursor: pointer;
+  outline: none;
 }
 .slider_prev {
   position: absolute;
@@ -50,4 +51,6 @@
   border: 1px solid lightgray;
   border-radius: 50px;
   z-index: 20;
+  cursor: pointer;
+  outline: none;
 }

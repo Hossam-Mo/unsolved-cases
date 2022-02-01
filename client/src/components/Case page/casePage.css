@@ -1,11 +1,14 @@
 .casePage_main {
-  margin: 0 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-top: 35px;
   text-align: right;
 }
 .casePage_mainTit {
   font-family: "Lora", "Scheherazade New";
   font-size: 13px;
+  width: 500px;
 }
 .casePage_mainTit > h1 {
   color: #5a5a5a;
