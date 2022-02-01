@@ -1,5 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import Slider from "../Image Slider/Slider";
 import Refrance from "../Refrance/Refrance";
 import "./casePage.css";
 
@@ -30,6 +31,7 @@ export default function CasePage() {
           <h3>{oCase.price} JD</h3>
           <p>{oCase.priceDes}</p>
         </div>
+        <Slider images={oCase.images}></Slider>
       </div>
     </div>
   );
