@@ -1,0 +1,32 @@
+.refrance {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid rgb(168, 168, 168);
+}
+.refrance > a {
+  text-decoration: none;
+}
+
+.refrance_home {
+  display: flex;
+  align-items: center;
+  font-family: "Lora";
+  font-size: 13px;
+  color: rgb(77, 75, 75);
+}
+
+.refrance_home > h3 {
+  margin: 0 10px;
+}
+
+.refrance_page {
+  display: flex;
+  align-items: center;
+  font-family: "Lora", "Scheherazade New";
+  font-size: 13px;
+  color: rgb(112, 112, 112);
+}
+.refrance_page > svg {
+  margin: 0 10px;
+}

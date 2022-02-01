@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import CaseCard from "./Case Card/CaseCard";
 import "./main.css";
 
@@ -16,7 +17,7 @@ export default function Main() {
     },
     {
       name: "جريمة قتل في يوم الزفاف",
-      id: 0,
+      id: 1,
       images: [
         "https://cdn.salla.sa/lwWeD/q6L6AjhMGrdbGs2yXBB2MekzOCNfr5LyQdciUhmJ.jpg",
         "https://cdn.salla.sa/lwWeD/ICmBBoSzZGKSEkGxohsfNLhE5BUO8bPNKdCBqiKj.jpg",
@@ -26,7 +27,7 @@ export default function Main() {
     },
     {
       name: "جريمة قتل في يوم الزفاف",
-      id: 0,
+      id: 2,
       images: [
         "https://cdn.salla.sa/lwWeD/q6L6AjhMGrdbGs2yXBB2MekzOCNfr5LyQdciUhmJ.jpg",
         "https://cdn.salla.sa/lwWeD/ICmBBoSzZGKSEkGxohsfNLhE5BUO8bPNKdCBqiKj.jpg",
@@ -36,7 +37,7 @@ export default function Main() {
     },
     {
       name: "جريمة قتل في يوم الزفاف",
-      id: 0,
+      id: 3,
       images: [
         "https://cdn.salla.sa/lwWeD/q6L6AjhMGrdbGs2yXBB2MekzOCNfr5LyQdciUhmJ.jpg",
         "https://cdn.salla.sa/lwWeD/ICmBBoSzZGKSEkGxohsfNLhE5BUO8bPNKdCBqiKj.jpg",
@@ -46,7 +47,7 @@ export default function Main() {
     },
     {
       name: "جريمة قتل في يوم الزفاف",
-      id: 0,
+      id: 4,
       images: [
         "https://cdn.salla.sa/lwWeD/q6L6AjhMGrdbGs2yXBB2MekzOCNfr5LyQdciUhmJ.jpg",
         "https://cdn.salla.sa/lwWeD/ICmBBoSzZGKSEkGxohsfNLhE5BUO8bPNKdCBqiKj.jpg",
@@ -60,13 +61,14 @@ export default function Main() {
     <div className="main">
       {cases.map((cas, index) => {
         return (
-          <CaseCard
-            key={index}
-            id={cas.id}
-            imgUrl={cas.images[0]}
-            name={cas.name}
-            price={cas.price}
-          ></CaseCard>
+          <Link key={cas.id} to={`/${cas.id}`}>
+            <CaseCard
+              id={cas.id}
+              imgUrl={cas.images[0]}
+              name={cas.name}
+              price={cas.price}
+            ></CaseCard>
+          </Link>
         );
       })}
     </div>
