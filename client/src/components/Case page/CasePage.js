@@ -48,6 +48,19 @@ export default function CasePage() {
             <li>السعر شامل الضريبة</li>
           </ul>
         </div>
+
+        <div className="casePage_ordar">
+          <div className="casePage_ordarDes">
+            <div>
+              <h3>السعر</h3>
+              <p>شامل الضريبه</p>
+            </div>
+            <div>
+              <h3>{oCase.price}JD</h3>
+            </div>
+          </div>
+          <button>اضافه للسلة</button>
+        </div>
       </div>
     </div>
   );

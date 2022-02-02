@@ -37,3 +37,45 @@
   list-style: none;
   font-weight: 500;
 }
+.casePage_ordar {
+  width: 540px;
+  margin: 20px 0;
+  padding: 15px;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.casePage_ordar > button {
+  padding: 10px;
+  border: 1px solid lightgray;
+  background-color: #212121;
+  color: white;
+  font-family: "Scheherazade New";
+  margin-top: 10px;
+  cursor: pointer;
+  outline: none;
+  border-radius: 50px;
+  transition: color 0.5s ease, background-color 0.5s ease,
+    border-color 0.5s ease;
+}
+.casePage_ordar > button:hover {
+  background-color: #ffffff;
+  color: #212121;
+  border-color: lightgray;
+}
+.casePage_ordarDes {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: space-between;
+  font-family: "Lora", "Scheherazade New";
+}
+.casePage_ordarDes > div > h3 {
+  font-size: 15px;
+  color: #5a5a5a;
+}
+.casePage_ordarDes > div > p {
+  font-size: 13px;
+  color: #212121;
+}
