@@ -2,16 +2,17 @@ import React from "react";
 import "./nav.css";
 import { BsPerson, BsSearch } from "react-icons/bs";
 import { FaOpencart } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 export default function Nav() {
   return (
     <div className="nav">
-      <div>
+      <Link to="/">
         <img
           className="nav_logo"
           src="https://cdn.salla.sa/lwWeD/GSMzWE31vr8hUCFGnu1g9wjfiLqyMIQaGaIQA1Ew.png"
         ></img>
-      </div>
+      </Link>
       <div className="nav_icons">
         <div>
           <BsPerson></BsPerson>
@@ -19,9 +20,9 @@ export default function Nav() {
         <div>
           <BsSearch></BsSearch>
         </div>
-        <div>
+        <Link to="/cart">
           <FaOpencart></FaOpencart>
-        </div>
+        </Link>
       </div>
     </div>
   );

@@ -1,0 +1,55 @@
+.cart_body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: right;
+  margin: 50px 0;
+}
+.cart_box {
+  width: 50%;
+  border: 1px solid lightgrey;
+  padding: 20px;
+  border-radius: 10px;
+}
+.cart_item {
+}
+.cart_itemDesc {
+  display: flex;
+  flex-direction: row-reverse;
+}
+.cart_itemImage > img {
+  width: 75px;
+  height: 75px;
+  border-radius: 10px;
+  margin-left: 10px;
+}
+.cart_itemName {
+  font-size: 11px;
+  color: rgb(97, 97, 97);
+  font-family: "Scheherazade New", "lora";
+  font-weight: 500;
+}
+.cart_count {
+  display: flex;
+  padding: 8px;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid lightgrey;
+  border-radius: 50px;
+  font-family: "lora";
+  margin: 20px;
+}
+.cart_count > div > h2 {
+  font-size: 16px;
+  color: #212121;
+}
+.cart_count > button {
+  padding: 0px 20px;
+  font-size: 20px;
+  font-family: "Lora";
+  border: 1px solid lightgray;
+  background-color: #212121;
+  color: white;
+  border-radius: 50px;
+  cursor: pointer;
+}

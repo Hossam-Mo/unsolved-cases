@@ -24,7 +24,7 @@ export default function CasePage() {
 
   return (
     <div className="casePage">
-      <Refrance root={"قتل في حفل الزفاف"}></Refrance>
+      <Refrance root={oCase.name}></Refrance>
       <div className="casePage_main">
         <div className="casePage_mainTit">
           <h1>{oCase.name}</h1>
