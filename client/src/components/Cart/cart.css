@@ -12,6 +12,17 @@
   border-radius: 10px;
 }
 .cart_item {
+  position: relative;
+  margin-bottom: 50px;
+}
+.cart_itemDelete {
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  font-size: 20px;
+  color: red;
+  cursor: pointer;
+  z-index: 10;
 }
 .cart_itemDesc {
   display: flex;
