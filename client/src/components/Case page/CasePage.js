@@ -1,10 +1,14 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
+import { add_toCart } from "../../redux/actionTypes";
 import Slider from "../Image Slider/Slider";
 import Refrance from "../Refrance/Refrance";
 import "./casePage.css";
 
 export default function CasePage() {
+  const dispatch = useDispatch();
+
   const prames = useParams();
   const oCase = {
     name: "جريمة قتل في يوم الزفاف",
@@ -20,6 +24,11 @@ export default function CasePage() {
       "قضيه لم تحل منذ اكثر من عشرين سنه تم تلفيق مقتل غاده ماسي على ابو جميل مهمتك كـ محقق حل غموض اللغز وكشف الجاني الحقيقي",
     ageRating: "14",
     difficulty: "7",
+  };
+
+  const addToCart = () => {
+    console.log("click");
+    dispatch({ type: add_toCart.type, payload: oCase });
   };
 
   return (
@@ -59,7 +68,7 @@ export default function CasePage() {
               <h3>{oCase.price}JD</h3>
             </div>
           </div>
-          <button>اضافه للسلة</button>
+          <button onClick={addToCart}>اضافه للسلة</button>
         </div>
       </div>
     </div>

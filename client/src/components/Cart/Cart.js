@@ -1,52 +1,35 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Refrance from "../Refrance/Refrance";
 import "./cart.css";
 import { AiOutlineCloseCircle } from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
+import { dsc_count, inc_count } from "../../redux/actionTypes";
 
 export default function Cart() {
-  const arr = [
-    {
-      name: "جريمة قتل في يوم الزفاف",
-      id: 1,
-      images: [
-        "https://cdn.salla.sa/lwWeD/q6L6AjhMGrdbGs2yXBB2MekzOCNfr5LyQdciUhmJ.jpg",
-        "https://cdn.salla.sa/lwWeD/ICmBBoSzZGKSEkGxohsfNLhE5BUO8bPNKdCBqiKj.jpg",
-        "https://cdn.salla.sa/lwWeD/66qZ934Cr44jWDdTnwoCwPMR0Y4NIDMuaHpxOkj8.png",
-      ],
-      price: 25,
-      priceDes: "السعر شامل الضريبه",
-      description:
-        "قضيه لم تحل منذ اكثر من عشرين سنه تم تلفيق مقتل غاده ماسي على ابو جميل مهمتك كـ محقق حل غموض اللغز وكشف الجاني الحقيقي",
-      ageRating: "14",
-      difficulty: "7",
-      counter: 1,
-    },
-    {
-      name: "جريمة قتل في يوم الزفاف",
-      id: 1,
-      images: [
-        "https://cdn.salla.sa/lwWeD/q6L6AjhMGrdbGs2yXBB2MekzOCNfr5LyQdciUhmJ.jpg",
-        "https://cdn.salla.sa/lwWeD/ICmBBoSzZGKSEkGxohsfNLhE5BUO8bPNKdCBqiKj.jpg",
-        "https://cdn.salla.sa/lwWeD/66qZ934Cr44jWDdTnwoCwPMR0Y4NIDMuaHpxOkj8.png",
-      ],
-      price: 25,
-      priceDes: "السعر شامل الضريبه",
-      description:
-        "قضيه لم تحل منذ اكثر من عشرين سنه تم تلفيق مقتل غاده ماسي على ابو جميل مهمتك كـ محقق حل غموض اللغز وكشف الجاني الحقيقي",
-      ageRating: "14",
-      difficulty: "7",
-      counter: 1,
-    },
-  ];
+  const dispatch = useDispatch();
+  const products = useSelector((state) => {
+    return state.cart;
+  });
 
+  useEffect(() => {
+    console.log(products);
+  }, [products]);
+
+  const incCount = (item) => {
+    console.log("click");
+    dispatch({ type: inc_count.type, payload: item });
+  };
+  const dscCount = (item) => {
+    if (item.count > 0) dispatch({ type: dsc_count.type, payload: item });
+  };
   return (
     <div className="cart">
       <Refrance root={"Cart"}></Refrance>
       <div className="cart_body">
         <div className="cart_box">
-          {arr.map((item) => {
+          {products.map((item) => {
             return (
-              <div className="cart_item">
+              <div key={item.id} className="cart_item">
                 <div className="cart_itemDelete">
                   <AiOutlineCloseCircle></AiOutlineCloseCircle>
                 </div>
@@ -60,11 +43,23 @@ export default function Cart() {
                   </div>
                 </div>
                 <div className="cart_count">
-                  <button>-</button>
+                  <button
+                    onClick={() => {
+                      dscCount(item);
+                    }}
+                  >
+                    -
+                  </button>
                   <div>
-                    <h2>1</h2>
+                    <h2>{item.count}</h2>
                   </div>
-                  <button>+</button>
+                  <button
+                    onClick={() => {
+                      incCount(item);
+                    }}
+                  >
+                    +
+                  </button>
                 </div>
               </div>
             );
