@@ -3,7 +3,7 @@ import Refrance from "../Refrance/Refrance";
 import "./cart.css";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
-import { dsc_count, inc_count } from "../../redux/actionTypes";
+import { cart_itemDelete, dsc_count, inc_count } from "../../redux/actionTypes";
 
 export default function Cart() {
   const dispatch = useDispatch();
@@ -20,8 +20,13 @@ export default function Cart() {
     dispatch({ type: inc_count.type, payload: item });
   };
   const dscCount = (item) => {
-    if (item.count > 0) dispatch({ type: dsc_count.type, payload: item });
+    if (item.count > 1) dispatch({ type: dsc_count.type, payload: item });
   };
+
+  const deleteItem = (item) => {
+    dispatch({ type: cart_itemDelete.type, payload: item });
+  };
+
   return (
     <div className="cart">
       <Refrance root={"Cart"}></Refrance>
@@ -30,7 +35,12 @@ export default function Cart() {
           {products.map((item) => {
             return (
               <div key={item.id} className="cart_item">
-                <div className="cart_itemDelete">
+                <div
+                  onClick={() => {
+                    deleteItem(item);
+                  }}
+                  className="cart_itemDelete"
+                >
                   <AiOutlineCloseCircle></AiOutlineCloseCircle>
                 </div>
                 <div className="cart_itemDesc">

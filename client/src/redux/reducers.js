@@ -31,6 +31,11 @@ const add_toCart = (state = initialState, action) => {
           : item;
       });
 
+    case actionTypes.cart_itemDelete.type:
+      return state.filter((item) => {
+        return item.id !== action.payload.id;
+      });
+
     default:
       return state;
   }

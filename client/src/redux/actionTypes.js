@@ -8,3 +8,7 @@ export const inc_count = {
 export const dsc_count = {
   type: "dsc_count",
 };
+
+export const cart_itemDelete = {
+  type: "cart_itemDelete",
+};
