@@ -1,9 +1,17 @@
 import { combineReducers } from "redux";
 import * as actionTypes from "./actionTypes";
 
-const initialState = [];
-
-const add_toCart = (state = initialState, action) => {
+const sign = (state = null, action) => {
+  switch (action.type) {
+    case actionTypes.signIn_user.type:
+      return action.user || null;
+    case actionTypes.signOut_user.type:
+      return null;
+    default:
+      return state;
+  }
+};
+const add_toCart = (state = [], action) => {
   switch (action.type) {
     case actionTypes.add_toCart.type:
       const inCart = state.find((item) => {
@@ -41,4 +49,4 @@ const add_toCart = (state = initialState, action) => {
   }
 };
 
-export const rootReducer = combineReducers({ cart: add_toCart });
+export const rootReducer = combineReducers({ cart: add_toCart, user: sign });

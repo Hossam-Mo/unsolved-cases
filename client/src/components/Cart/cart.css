@@ -1,3 +1,6 @@
+.cart {
+  min-height: calc(100vh - 244px);
+}
 .cart_body {
   display: flex;
   flex-direction: column;
