@@ -7,17 +7,25 @@ import CasePage from "./components/Case page/CasePage";
 import Cart from "./components/Cart/Cart";
 import { useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "./firebase/firebase_config";
+import db, { auth } from "./firebase/firebase_config";
 import { useDispatch, useSelector } from "react-redux";
 import { signIn_user } from "./redux/actionTypes";
-
+import { getDoc, doc } from "firebase/firestore";
 function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        dispatch({ type: signIn_user.type, user });
+        getDoc(doc(db, "users", `${user.uid}`))
+          .then((res) => {
+            console.log(res.data());
+            if (res.exists)
+              dispatch({ type: signIn_user.type, user: res.data() });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       }
     });
   }, []);

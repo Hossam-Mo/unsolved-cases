@@ -18,7 +18,7 @@ export default function Nav() {
   const handleOpen = () => setOpen(true);
   const sign_Out = () => {
     signOut(auth)
-      .then((res) => {
+      .then(() => {
         dispatch({ type: signOut_user.type });
         setOpen(false);
       })

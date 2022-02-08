@@ -28,13 +28,18 @@ export default function SignModel({ open, setOpen }) {
   const signIn = () => {
     signInWithPopup(auth, googleProvider)
       .then((result) => {
-        dispatch({ type: signIn_user.type, user: result });
         setOpen(false);
         // check if the user does exist
         getDoc(doc(db, "users", `${result.user.uid}`))
           .then((res) => {
-            if (!res.exists() && result) {
+            if (!res.exists()) {
               userSaved(result.user);
+              dispatch({
+                type: signIn_user.type,
+                user: { ...result.user, admin: false },
+              });
+            } else {
+              dispatch({ type: signIn_user.type, user: res.data() });
             }
           })
           .catch((err) => {
