@@ -52,7 +52,7 @@ export default function SignModel({ open, setOpen }) {
 
     setDoc(doc(db, "users", `${newUser.uid}`), {
       ...newUser,
-      admin: true,
+      admin: false,
     }).catch((err) => {
       console.log(err);
     });
