@@ -4,10 +4,11 @@ import Box from "@mui/material/Box";
 import { BsPersonPlus } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
 import "./signModel.css";
-import { auth, googleProvider } from "../../firebase/firebase_config";
+import db, { auth, googleProvider } from "../../firebase/firebase_config";
 import { signInWithPopup } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { signIn_user } from "../../redux/actionTypes";
+import { getDoc, setDoc, doc } from "firebase/firestore";
 const style = {
   position: "absolute",
   top: "50%",
@@ -27,15 +28,35 @@ export default function SignModel({ open, setOpen }) {
   const signIn = () => {
     signInWithPopup(auth, googleProvider)
       .then((result) => {
-        console.log(result);
         dispatch({ type: signIn_user.type, user: result });
         setOpen(false);
+        // check if the user does exist
+        getDoc(doc(db, "users", `${result.user.uid}`))
+          .then((res) => {
+            if (!res.exists() && result) {
+              userSaved(result.user);
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       })
       .catch((error) => {
         console.log(error);
       });
   };
 
+  const userSaved = (user) => {
+    let newUser = {};
+    newUser = JSON.parse(JSON.stringify(user));
+
+    setDoc(doc(db, "users", `${newUser.uid}`), {
+      ...newUser,
+      admin: true,
+    }).catch((err) => {
+      console.log(err);
+    });
+  };
   return (
     <Modal open={open} onClose={handleClose}>
       <Box sx={style}>
