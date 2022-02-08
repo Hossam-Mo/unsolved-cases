@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./nav.css";
 import { BsPerson, BsSearch } from "react-icons/bs";
 import { FaOpencart } from "react-icons/fa";
-import { BiLogOut } from "react-icons/bi";
+import { BiLogOut, BiAddToQueue } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import SignModel from "../models/SignModel";
 import { useDispatch, useSelector } from "react-redux";
@@ -52,6 +52,11 @@ export default function Nav() {
         <Link to="/cart">
           <FaOpencart></FaOpencart>
         </Link>
+        {user?.admin && (
+          <div>
+            <BiAddToQueue></BiAddToQueue>
+          </div>
+        )}
       </div>
     </div>
   );
