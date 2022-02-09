@@ -1,0 +1,67 @@
+.addModel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: lora;
+}
+.addModel_close {
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  cursor: pointer;
+}
+.addModel_close > svg {
+  font-size: 25px;
+  color: rgb(197, 3, 3);
+}
+.addModel > svg {
+  font-size: 50px;
+  color: rgb(3, 77, 102);
+  margin-bottom: 10px;
+  border: 1px solid rgb(1, 100, 133);
+  padding: 10px;
+  border-radius: 20px;
+}
+.addModel > h2 {
+  font-size: 17px;
+  color: rgb(3, 77, 102);
+  font-weight: 100;
+  margin-bottom: 30px;
+}
+.addModel > form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.addModel > form > div {
+  margin-bottom: 10px;
+}
+
+.addModel_fileInput {
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+}
+.addModel_customFileInput {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  background-color: darkblue;
+  border-radius: 50px;
+  color: white;
+  margin: 10px;
+  font-family: "lora";
+  cursor: pointer;
+}
+.addModel_customFileInput > svg {
+  font-size: 22px;
+  margin-right: 10px;
+}
+
+.addModel_customFileInput > p {
+  font-size: 15px;
+}

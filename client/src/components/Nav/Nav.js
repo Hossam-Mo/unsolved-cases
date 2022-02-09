@@ -9,18 +9,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase/firebase_config";
 import { signOut_user } from "../../redux/actionTypes";
+import AddModel from "../models/AddModel";
+
 export default function Nav() {
-  const [open, setOpen] = useState(false);
+  const [signInOpen, setSignInOpen] = useState(false);
+  const [addOpen, setAddOpen] = useState(false);
   const dispatch = useDispatch();
   const user = useSelector((state) => {
     return state.user;
   });
-  const handleOpen = () => setOpen(true);
+  const handleSignInOpen = () => setSignInOpen(true);
+  const handleAddOpen = () => setAddOpen(true);
   const sign_Out = () => {
     signOut(auth)
       .then(() => {
         dispatch({ type: signOut_user.type });
-        setOpen(false);
+        setSignInOpen(false);
       })
       .catch((err) => {
         console.log(err);
@@ -29,7 +33,8 @@ export default function Nav() {
 
   return (
     <div className="nav">
-      <SignModel open={open} setOpen={setOpen}></SignModel>
+      <AddModel open={addOpen} setOpen={setAddOpen}></AddModel>
+      <SignModel open={signInOpen} setOpen={setSignInOpen}></SignModel>
       <Link to="/">
         <img
           className="nav_logo"
@@ -42,7 +47,7 @@ export default function Nav() {
             <BiLogOut></BiLogOut>
           </div>
         ) : (
-          <div onClick={handleOpen}>
+          <div onClick={handleSignInOpen}>
             <BsPerson></BsPerson>
           </div>
         )}
@@ -53,7 +58,7 @@ export default function Nav() {
           <FaOpencart></FaOpencart>
         </Link>
         {user?.admin && (
-          <div>
+          <div onClick={handleAddOpen}>
             <BiAddToQueue></BiAddToQueue>
           </div>
         )}
