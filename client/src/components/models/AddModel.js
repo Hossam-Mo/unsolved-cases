@@ -3,7 +3,7 @@ import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import { BiAddToQueue } from "react-icons/bi";
 import "./addModel.css";
-import { FilledInput, Button, TextField, Input } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import { AiOutlineCloseCircle, AiOutlineCloudUpload } from "react-icons/ai";
 const style = {
   position: "absolute",
@@ -64,12 +64,28 @@ export default function AddModel({ open, setOpen }) {
               name="file"
               id="file"
               type="file"
+              multiple
+              accept="image/png, image/jpeg"
+              onChange={(e) => {
+                setImages(e.target.files);
+                console.log(e.target.files);
+              }}
             ></input>
             <label className="addModel_customFileInput" htmlFor="file">
               <AiOutlineCloudUpload></AiOutlineCloudUpload>
-              <p>Choose a file...</p>
+              {images.length < 0 ? (
+                <p>Choose a file...</p>
+              ) : (
+                <p>{`Files selected: ${images.length}`}</p>
+              )}
             </label>
-            <Button>Add</Button>
+            <Button
+              onClick={() => {
+                console.log(images);
+              }}
+            >
+              Add
+            </Button>
           </form>
         </div>
       </Box>
