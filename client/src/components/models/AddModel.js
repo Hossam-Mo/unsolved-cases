@@ -24,22 +24,6 @@ const style = {
   maxHeight: "80vh",
 };
 
-const oCase = {
-  name: "جريمة قتل في يوم الزفاف",
-  id: "1",
-  images: [
-    "https://cdn.salla.sa/lwWeD/q6L6AjhMGrdbGs2yXBB2MekzOCNfr5LyQdciUhmJ.jpg",
-    "https://cdn.salla.sa/lwWeD/ICmBBoSzZGKSEkGxohsfNLhE5BUO8bPNKdCBqiKj.jpg",
-    "https://cdn.salla.sa/lwWeD/66qZ934Cr44jWDdTnwoCwPMR0Y4NIDMuaHpxOkj8.png",
-  ],
-  price: 25,
-  priceDes: "السعر شامل الضريبه",
-  description:
-    "قضيه لم تحل منذ اكثر من عشرين سنه تم تلفيق مقتل غاده ماسي على ابو جميل مهمتك كـ محقق حل غموض اللغز وكشف الجاني الحقيقي",
-  ageRating: "14",
-  difficulty: "7",
-};
-
 export default function AddModel({ open, setOpen }) {
   const handleClose = () => setOpen(false);
   const [name, setName] = useState("");
