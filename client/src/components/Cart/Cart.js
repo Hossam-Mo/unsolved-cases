@@ -2,18 +2,16 @@ import React, { useEffect } from "react";
 import Refrance from "../Refrance/Refrance";
 import "./cart.css";
 import { AiOutlineCloseCircle } from "react-icons/ai";
+import { FaHeartBroken } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { cart_itemDelete, dsc_count, inc_count } from "../../redux/actionTypes";
+import { Link } from "react-router-dom";
 
 export default function Cart() {
   const dispatch = useDispatch();
   const products = useSelector((state) => {
     return state.cart;
   });
-
-  useEffect(() => {
-    console.log(products);
-  }, [products]);
 
   const incCount = (item) => {
     console.log("click");
@@ -27,6 +25,7 @@ export default function Cart() {
     dispatch({ type: cart_itemDelete.type, payload: item });
   };
 
+  const orderEmail = () => {};
   return (
     <div className="cart">
       <Refrance root={"Cart"}></Refrance>
@@ -76,8 +75,13 @@ export default function Cart() {
               );
             })
           ) : (
-            <h2>The Cart is empty</h2>
+            <div className="cart_empty">
+              <h2>The Cart is empty</h2>
+              <FaHeartBroken></FaHeartBroken>
+              <Link to="/">Home</Link>
+            </div>
           )}
+          <button className="cart_checkOut">Check Out</button>
         </div>
       </div>
     </div>
