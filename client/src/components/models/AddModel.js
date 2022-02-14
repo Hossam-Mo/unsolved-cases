@@ -35,6 +35,33 @@ export default function AddModel({ open, setOpen }) {
   const [difficulty, setDifficulty] = useState("");
   const [prograss, setPrograss] = useState(0);
 
+  const onSubmit = (images) => {
+    console.log(images);
+    addDoc(collection(db, "cases"), {
+      name,
+      price,
+      priceDes,
+      description,
+      difficulty,
+      ageRating,
+      images,
+    })
+      .then((res) => {
+        console.log(res);
+        setAgeRating("");
+        setName("");
+        setDescription("");
+        setPrice("");
+        setDifficulty("");
+        setPriceDes("");
+        setImages([]);
+
+        alert("The case has been added");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   const imagesUpload = () => {
     if (
       name === "" ||
@@ -81,34 +108,6 @@ export default function AddModel({ open, setOpen }) {
         }
       );
     });
-  };
-
-  const onSubmit = (images) => {
-    console.log(images);
-    addDoc(collection(db, "cases"), {
-      name,
-      price,
-      priceDes,
-      description,
-      difficulty,
-      ageRating,
-      images,
-    })
-      .then((res) => {
-        console.log(res);
-        setAgeRating("");
-        setName("");
-        setDescription("");
-        setPrice("");
-        setDifficulty("");
-        setPriceDes("");
-        setImages([]);
-
-        alert("The case has been added");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
   };
   return (
     <Modal open={open} onClose={handleClose}>
