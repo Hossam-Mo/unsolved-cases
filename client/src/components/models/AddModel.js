@@ -6,9 +6,9 @@ import "./addModel.css";
 import { Button, TextField } from "@mui/material";
 import { AiOutlineCloseCircle, AiOutlineCloudUpload } from "react-icons/ai";
 import db, { storage } from "../../firebase/firebase_config";
-import { addDoc, collection, doc } from "firebase/firestore";
+import { addDoc, collection } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
-import { async } from "@firebase/util";
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -28,7 +28,6 @@ export default function AddModel({ open, setOpen }) {
   const handleClose = () => setOpen(false);
   const [name, setName] = useState("");
   const [images, setImages] = useState([]);
-  const [uploadedImages, setUploadedImages] = useState([]);
   const [price, setPrice] = useState("");
   const [priceDes, setPriceDes] = useState("");
   const [description, setDescription] = useState("");
@@ -37,12 +36,23 @@ export default function AddModel({ open, setOpen }) {
   const [prograss, setPrograss] = useState(0);
 
   const imagesUpload = () => {
-    if (images.length === 0) return;
-
+    if (
+      name === "" ||
+      price === "" ||
+      priceDes === "" ||
+      description === "" ||
+      difficulty === "" ||
+      ageRating === "" ||
+      images.length === 0
+    ) {
+      alert("Please fill up every felid");
+      return;
+    }
     const newImagesArr = Object.values(images);
+    const paths = [];
 
-    newImagesArr.forEach((img) => {
-      const storageRef = ref(storage, `/imeges/${img.name} ${Math.random()}  `);
+    newImagesArr.forEach((img, index) => {
+      const storageRef = ref(storage, `/imeges/${img.name} ${Math.random()}`);
       const uploadTask = uploadBytesResumable(storageRef, img);
 
       uploadTask.on(
@@ -59,63 +69,46 @@ export default function AddModel({ open, setOpen }) {
         () => {
           getDownloadURL(uploadTask.snapshot.ref)
             .then((res) => {
-              setUploadedImages((pre) => {
-                return [...pre, res];
-              });
+              paths.push(res);
               setPrograss(0);
-              return true;
+              if (newImagesArr.length - 1 === index) {
+                onSubmit(paths);
+              }
             })
             .catch((err) => {
               console.log(err);
-              return false;
             });
         }
       );
     });
   };
 
-  useEffect(() => {
-    console.log(uploadedImages);
-  }, [uploadedImages]);
+  const onSubmit = (images) => {
+    console.log(images);
+    addDoc(collection(db, "cases"), {
+      name,
+      price,
+      priceDes,
+      description,
+      difficulty,
+      ageRating,
+      images,
+    })
+      .then((res) => {
+        console.log(res);
+        setAgeRating("");
+        setName("");
+        setDescription("");
+        setPrice("");
+        setDifficulty("");
+        setPriceDes("");
+        setImages([]);
 
-  const onSubmit = () => {
-    if (
-      name === "" ||
-      price === "" ||
-      priceDes === "" ||
-      description === "" ||
-      difficulty === "" ||
-      ageRating === "" ||
-      images.length === 0
-    ) {
-      alert("Please fill up every felid");
-    } else {
-      addDoc(collection(db, "cases"), {
-        name,
-        price,
-        priceDes,
-        description,
-        difficulty,
-        ageRating,
-        uploadedImages,
+        alert("The case has been added");
       })
-        .then((res) => {
-          console.log(res);
-          setAgeRating("");
-          setName("");
-          setDescription("");
-          setPrice("");
-          setDifficulty("");
-          setPriceDes("");
-          setImages([]);
-          setUploadedImages([]);
-
-          alert("The case has been added");
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
+      .catch((err) => {
+        console.log(err);
+      });
   };
   return (
     <Modal open={open} onClose={handleClose}>
@@ -197,10 +190,8 @@ export default function AddModel({ open, setOpen }) {
               )}
             </label>
             {prograss > 0 && <div>Upolad: {prograss}%</div>}
-            <Button onClick={onSubmit}>Add</Button>
+            <Button onClick={imagesUpload}>Add</Button>
           </form>
-
-          <button onClick={imagesUpload}>xxx</button>
         </div>
       </Box>
     </Modal>
